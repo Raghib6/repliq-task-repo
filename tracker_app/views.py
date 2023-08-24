@@ -27,3 +27,22 @@ class EmployeeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
         emp_id = self.kwargs.get("emp_id")
         employee = get_object_or_404(models.Employee, company=company_id, id=emp_id)
         return employee
+
+
+class DeviceListCreateView(generics.ListCreateAPIView):
+    serializer_class = model_serializers.DeviceSerializer
+
+    def get_queryset(self):
+        company_id = self.kwargs.get("company_id")
+        devices = models.Device.objects.filter(company=company_id)
+        return devices
+
+
+class DeviceRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = model_serializers.DeviceSerializer
+
+    def get_object(self):
+        company_id = self.kwargs.get("company_id")
+        device_id = self.kwargs.get("device_id")
+        device = get_object_or_404(models.Device, company=company_id, id=device_id)
+        return device

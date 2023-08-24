@@ -18,3 +18,14 @@ class EmpolyeeSerializer(serializers.ModelSerializer):
         rep = super(EmpolyeeSerializer, self).to_representation(instance)
         rep["company"] = instance.company.name
         return rep
+
+
+class DeviceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Device
+        fields = ["name", "company", "is_assigned"]
+
+    def to_representation(self, instance):
+        rep = super(DeviceSerializer, self).to_representation(instance)
+        rep["company"] = instance.company.name
+        return rep
