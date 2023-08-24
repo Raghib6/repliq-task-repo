@@ -46,3 +46,26 @@ class DeviceRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
         device_id = self.kwargs.get("device_id")
         device = get_object_or_404(models.Device, company=company_id, id=device_id)
         return device
+
+
+class AssignedDeviceListCreateView(generics.ListCreateAPIView):
+    serializer_class = model_serializers.AssignDeviceSerializer
+
+    def get_queryset(self):
+        company_id = self.kwargs.get("company_id")
+        assigned_devices = models.AssignDevice.objects.filter(
+            assign_to__company=company_id
+        )
+        return assigned_devices
+
+
+class AssignedDeviceRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = model_serializers.AssignDeviceSerializer
+
+    def get_object(self):
+        company_id = self.kwargs.get("company_id")
+        device_id = self.kwargs.get("device_id")
+        asigned_device = get_object_or_404(
+            models.AssignDevice, assign_to__company=company_id, id=device_id
+        )
+        return asigned_device

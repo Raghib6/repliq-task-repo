@@ -65,4 +65,4 @@ class DeviceLog(models.Model):
     comments = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.employee
+        return self.assigned_device.device.name
