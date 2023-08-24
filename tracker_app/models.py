@@ -30,10 +30,6 @@ class Device(models.Model):
         return self.name
 
 
-from django.db.models.signals import post_save, pre_save
-from django.dispatch import receiver
-
-
 class AssignDevice(models.Model):
     CONDITIONS = (
         ("Excellent", "Excellent"),
