@@ -8,6 +8,7 @@ from tracker_app.views import (
     DeviceRetrieveUpdateDestroyView,
     AssignedDeviceListCreateView,
     AssignedDeviceRetrieveUpdateDestroyView,
+    DeviceLogListView,
 )
 
 router = DefaultRouter()
@@ -33,4 +34,5 @@ urlpatterns = [
         "company/<int:company_id>/assigned-devices/<int:device_id>/",
         AssignedDeviceRetrieveUpdateDestroyView.as_view(),
     ),
+    path("company/<int:company_id>/device-logs/", DeviceLogListView.as_view()),
 ]

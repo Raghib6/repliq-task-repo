@@ -49,3 +49,21 @@ class AssignDeviceSerializer(serializers.ModelSerializer):
         rep["assign_to"] = instance.assign_to.name
         rep["device"] = instance.device.name
         return rep
+
+
+class DeviceLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DeviceLog
+        fields = [
+            "assigned_device",
+            "condition_when_handed_out",
+            "condition_when_returned",
+            "checkout_date",
+            "return_date",
+            "comments",
+        ]
+
+    def to_representation(self, instance):
+        rep = super(DeviceLogSerializer, self).to_representation(instance)
+        rep["assigned_device"] = instance.assigned_device.device.name
+        return rep

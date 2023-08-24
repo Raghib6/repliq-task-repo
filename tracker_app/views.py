@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.db import transaction
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, viewsets
 from tracker_app import models
 from tracker_app import serializers as model_serializers
+from rest_framework.exceptions import ValidationError
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
@@ -58,6 +59,18 @@ class AssignedDeviceListCreateView(generics.ListCreateAPIView):
         )
         return assigned_devices
 
+    @transaction.atomic
+    def create(self, request, *args, **kwargs):
+        device_id = request.data.get("device")
+        device = get_object_or_404(models.Device, id=device_id)
+        if device.is_assigned:
+            raise ValidationError("Device is already taken")
+        with transaction.atomic():
+            response = super().create(request, *args, **kwargs)
+            device.is_assigned = True
+            device.save()
+        return response
+
 
 class AssignedDeviceRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = model_serializers.AssignDeviceSerializer
@@ -69,3 +82,17 @@ class AssignedDeviceRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIV
             models.AssignDevice, assign_to__company=company_id, id=device_id
         )
         return asigned_device
+
+
+class DeviceLogListView(generics.ListCreateAPIView):
+    serializer_class = model_serializers.DeviceLogSerializer
+
+    def get_queryset(self):
+        device_logs = []
+        company_id = self.kwargs.get("company_id")
+        company = models.Company.objects.get(id=company_id)
+        devices = company.company_devices.all()
+        for device in devices:
+            for log in device.assigndevice_set.all():
+                device_logs.extend(log.device_logs.all())
+        return device_logs

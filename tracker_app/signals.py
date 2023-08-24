@@ -5,7 +5,7 @@ from tracker_app.models import AssignDevice, DeviceLog
 
 @receiver(post_save, sender=AssignDevice)
 def update_assign_status(sender, instance, **kwargs):
-    if not instance.return_date:
+    if not instance.return_date and instance.device_return_condition:
         instance.device.is_assigned = True
     else:
         instance.device.is_assigned = False
