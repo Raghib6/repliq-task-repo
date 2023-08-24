@@ -30,6 +30,10 @@ class Device(models.Model):
         return self.name
 
 
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
+
+
 class AssignDevice(models.Model):
     CONDITIONS = (
         ("Excellent", "Excellent"),
@@ -55,7 +59,9 @@ class AssignDevice(models.Model):
 
 
 class DeviceLog(models.Model):
-    employee = models.CharField(max_length=250)
+    assigned_device = models.ForeignKey(
+        AssignDevice, related_name="device_logs", on_delete=models.CASCADE
+    )
     condition_when_handed_out = models.CharField(max_length=15)
     condition_when_returned = models.CharField(max_length=15)
     checkout_date = models.DateTimeField(null=True, blank=True)
@@ -63,4 +69,4 @@ class DeviceLog(models.Model):
     comments = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.employee.name
+        return self.employee
