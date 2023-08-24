@@ -1,0 +1,1120 @@
+openapi: 3.0.3
+info:
+  title: REPLIQ Task API
+  version: 0.0.0
+paths:
+  /api/company/:
+    get:
+      operationId: company_list
+      description: Endpoints to manage Company
+      tags:
+      - Company
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+          description: ''
+    post:
+      operationId: company_create
+      description: Endpoints to manage Company
+      tags:
+      - Company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Company'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Company'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: ''
+  /api/company/{company_id}/assigned-devices/:
+    get:
+      operationId: company_assigned_devices_list
+      description: Endpoints to manage Assigned Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - AssignDevice
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssignDevice'
+          description: ''
+    post:
+      operationId: company_assigned_devices_create
+      description: Endpoints to manage Assigned Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - AssignDevice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignDevice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AssignDevice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AssignDevice'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignDevice'
+          description: ''
+  /api/company/{company_id}/assigned-devices/{device_id}/:
+    get:
+      operationId: company_assigned_devices_retrieve
+      description: Endpoints to manage Assigned Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: device_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - AssignDevice
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignDevice'
+          description: ''
+    put:
+      operationId: company_assigned_devices_update
+      description: Endpoints to manage Assigned Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: device_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - AssignDevice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignDevice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AssignDevice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AssignDevice'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignDevice'
+          description: ''
+    patch:
+      operationId: company_assigned_devices_partial_update
+      description: Endpoints to manage Assigned Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: device_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - AssignDevice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAssignDevice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAssignDevice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAssignDevice'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignDevice'
+          description: ''
+    delete:
+      operationId: company_assigned_devices_destroy
+      description: Endpoints to manage Assigned Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: device_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - AssignDevice
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/company/{company_id}/device-logs/:
+    get:
+      operationId: company_device_logs_list
+      description: Endpoints to manage Device Logs
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - DeviceLog
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceLog'
+          description: ''
+    post:
+      operationId: company_device_logs_create
+      description: Endpoints to manage Device Logs
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - DeviceLog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceLog'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DeviceLog'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DeviceLog'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceLog'
+          description: ''
+  /api/company/{company_id}/devices/:
+    get:
+      operationId: company_devices_list
+      description: Endpoints to manage Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Device
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+          description: ''
+    post:
+      operationId: company_devices_create
+      description: Endpoints to manage Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Device
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Device'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: ''
+  /api/company/{company_id}/devices/{device_id}/:
+    get:
+      operationId: company_devices_retrieve
+      description: Endpoints to manage Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: device_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Device
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: ''
+    put:
+      operationId: company_devices_update
+      description: Endpoints to manage Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: device_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Device
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Device'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: ''
+    patch:
+      operationId: company_devices_partial_update
+      description: Endpoints to manage Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: device_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Device
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDevice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDevice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDevice'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: ''
+    delete:
+      operationId: company_devices_destroy
+      description: Endpoints to manage Device
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: device_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Device
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/company/{company_id}/employees/:
+    get:
+      operationId: company_employees_list
+      description: Endpoints to manage Employee
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Employee
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Empolyee'
+          description: ''
+    post:
+      operationId: company_employees_create
+      description: Endpoints to manage Employee
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empolyee'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Empolyee'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Empolyee'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empolyee'
+          description: ''
+  /api/company/{company_id}/employees/{emp_id}/:
+    get:
+      operationId: company_employees_retrieve
+      description: Endpoints to manage Employee
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: emp_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Employee
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empolyee'
+          description: ''
+    put:
+      operationId: company_employees_update
+      description: Endpoints to manage Employee
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: emp_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empolyee'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Empolyee'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Empolyee'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empolyee'
+          description: ''
+    patch:
+      operationId: company_employees_partial_update
+      description: Endpoints to manage Employee
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: emp_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEmpolyee'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEmpolyee'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEmpolyee'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empolyee'
+          description: ''
+    delete:
+      operationId: company_employees_destroy
+      description: Endpoints to manage Employee
+      parameters:
+      - in: path
+        name: company_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: emp_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Employee
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/company/{id}/:
+    get:
+      operationId: company_retrieve
+      description: Endpoints to manage Company
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this company.
+        required: true
+      tags:
+      - Company
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: ''
+    put:
+      operationId: company_update
+      description: Endpoints to manage Company
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this company.
+        required: true
+      tags:
+      - Company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Company'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Company'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: ''
+    patch:
+      operationId: company_partial_update
+      description: Endpoints to manage Company
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this company.
+        required: true
+      tags:
+      - Company
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCompany'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+          description: ''
+    delete:
+      operationId: company_destroy
+      description: Endpoints to manage Company
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this company.
+        required: true
+      tags:
+      - Company
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+components:
+  schemas:
+    AssignDevice:
+      type: object
+      properties:
+        assign_to:
+          type: integer
+        device:
+          type: integer
+        checkout_date:
+          type: string
+          format: date-time
+          readOnly: true
+        return_date:
+          type: string
+          format: date-time
+          nullable: true
+        device_condition:
+          $ref: '#/components/schemas/DeviceConditionEnum'
+        device_return_condition:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/DeviceReturnConditionEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        description:
+          type: string
+      required:
+      - assign_to
+      - checkout_date
+      - description
+      - device
+      - device_condition
+    BlankEnum:
+      enum:
+      - ''
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 150
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - name
+    Device:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 150
+        company:
+          type: integer
+        is_assigned:
+          type: boolean
+      required:
+      - company
+      - name
+    DeviceConditionEnum:
+      enum:
+      - Excellent
+      - Good
+      - Fair
+      - Poor
+      - Broken
+      type: string
+      description: |-
+        * `Excellent` - Excellent
+        * `Good` - Good
+        * `Fair` - Fair
+        * `Poor` - Poor
+        * `Broken` - Broken
+    DeviceLog:
+      type: object
+      properties:
+        assigned_device:
+          type: integer
+        condition_when_handed_out:
+          type: string
+          maxLength: 15
+        condition_when_returned:
+          type: string
+          maxLength: 15
+        checkout_date:
+          type: string
+          format: date-time
+          nullable: true
+        return_date:
+          type: string
+          format: date-time
+          nullable: true
+        comments:
+          type: string
+          nullable: true
+      required:
+      - assigned_device
+      - condition_when_handed_out
+      - condition_when_returned
+    DeviceReturnConditionEnum:
+      enum:
+      - Excellent
+      - Good
+      - Fair
+      - Poor
+      - Broken
+      type: string
+      description: |-
+        * `Excellent` - Excellent
+        * `Good` - Good
+        * `Fair` - Fair
+        * `Poor` - Poor
+        * `Broken` - Broken
+    Empolyee:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 150
+        company:
+          type: integer
+      required:
+      - company
+      - name
+    NullEnum:
+      enum:
+      - null
+    PatchedAssignDevice:
+      type: object
+      properties:
+        assign_to:
+          type: integer
+        device:
+          type: integer
+        checkout_date:
+          type: string
+          format: date-time
+          readOnly: true
+        return_date:
+          type: string
+          format: date-time
+          nullable: true
+        device_condition:
+          $ref: '#/components/schemas/DeviceConditionEnum'
+        device_return_condition:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/DeviceReturnConditionEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        description:
+          type: string
+    PatchedCompany:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 150
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedDevice:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 150
+        company:
+          type: integer
+        is_assigned:
+          type: boolean
+    PatchedEmpolyee:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 150
+        company:
+          type: integer
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

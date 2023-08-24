@@ -4,13 +4,16 @@ from rest_framework import generics, viewsets
 from tracker_app import models
 from tracker_app import serializers as model_serializers
 from rest_framework.exceptions import ValidationError
+from drf_spectacular.utils import extend_schema
 
 
+@extend_schema(tags=["Company"], description="Endpoints to manage Company")
 class CompanyViewSet(viewsets.ModelViewSet):
     queryset = models.Company.objects.all()
     serializer_class = model_serializers.CompanySerializer
 
 
+@extend_schema(tags=["Employee"], description="Endpoints to manage Employee")
 class EmployeeListCreateView(generics.ListCreateAPIView):
     serializer_class = model_serializers.EmpolyeeSerializer
 
@@ -20,6 +23,7 @@ class EmployeeListCreateView(generics.ListCreateAPIView):
         return employees
 
 
+@extend_schema(tags=["Employee"], description="Endpoints to manage Employee")
 class EmployeeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = model_serializers.EmpolyeeSerializer
 
@@ -30,6 +34,7 @@ class EmployeeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
         return employee
 
 
+@extend_schema(tags=["Device"], description="Endpoints to manage Device")
 class DeviceListCreateView(generics.ListCreateAPIView):
     serializer_class = model_serializers.DeviceSerializer
 
@@ -39,6 +44,7 @@ class DeviceListCreateView(generics.ListCreateAPIView):
         return devices
 
 
+@extend_schema(tags=["Device"], description="Endpoints to manage Device")
 class DeviceRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = model_serializers.DeviceSerializer
 
@@ -49,6 +55,7 @@ class DeviceRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
         return device
 
 
+@extend_schema(tags=["AssignDevice"], description="Endpoints to manage Assigned Device")
 class AssignedDeviceListCreateView(generics.ListCreateAPIView):
     serializer_class = model_serializers.AssignDeviceSerializer
 
@@ -72,6 +79,7 @@ class AssignedDeviceListCreateView(generics.ListCreateAPIView):
         return response
 
 
+@extend_schema(tags=["AssignDevice"], description="Endpoints to manage Assigned Device")
 class AssignedDeviceRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = model_serializers.AssignDeviceSerializer
 
@@ -84,6 +92,7 @@ class AssignedDeviceRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIV
         return asigned_device
 
 
+@extend_schema(tags=["DeviceLog"], description="Endpoints to manage Device Logs")
 class DeviceLogListView(generics.ListCreateAPIView):
     serializer_class = model_serializers.DeviceLogSerializer
 
